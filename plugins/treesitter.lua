@@ -1,6 +1,7 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   opts = {
-    -- ensure_installed = { "lua" },
+    auto_instal = true,
+    ensure_installed = { "lua", "elixir", "rust" },
   },
 }

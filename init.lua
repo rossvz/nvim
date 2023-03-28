@@ -1,4 +1,5 @@
 vim.opt.autowrite = true
+vim.opt.autowriteall = true
 return {
   -- Configure AstroNvim updates
   updater = {
