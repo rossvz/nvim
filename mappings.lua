@@ -22,21 +22,40 @@ return {
     ["<leader>r"] = { name = "Test" },
     ["<leader>rc"] = {
       function()
+        vim.cmd("write!")
         require("neotest").run.run()
+        require("neotest").summary.open()
       end,
-      desc = "Run Tests At Cursor"
+      desc = "run tests at (C)ursor"
     },
     ["<leader>rf"] = {
       function()
+        vim.cmd("write!")
         require("neotest").run.run(vim.fn.expand("%"))
+        require("neotest").summary.open()
       end,
-      desc = "Run Tests in File"
+      desc = "run tests in (F)ile"
     },
     ["<leader>rs"] = {
       function()
-        require("neotest").run.run(vim.fn.expand("%"))
+        vim.cmd("write!")
+        require("neotest").run.run(vim.fn.getcwd())
+        require("neotest").summary.open()
       end,
-      desc = "Run Tests in Suite"
+      desc = "run tests in (S)uite"
+    },
+    ["<leader>rr"] = {
+      function()
+        vim.cmd("write!")
+        require("neotest").run.run_last()
+      end,
+      desc = "(r)e-run last test"
+    },
+    ["<leader>re"] = {
+      function()
+        require("neotest").summary.toggle()
+      end,
+      desc = "toggle test summary vi(e)w"
     }
   },
   t = {
