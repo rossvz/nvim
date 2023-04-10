@@ -3,6 +3,9 @@
 -- Please use this mappings table to set keyboard mapping since this is the
 -- lower level configuration and more robust one. (which-key will
 -- automatically pick-up stored data by this setting.)
+--
+--
+local neotest = require("neotest")
 return {
   -- first key is the mode
   n = {
@@ -23,39 +26,45 @@ return {
     ["<leader>rc"] = {
       function()
         vim.cmd("write!")
-        require("neotest").run.run()
-        require("neotest").summary.open()
+        neotest.run.run()
+        neotest.summary.open()
       end,
       desc = "run tests at (C)ursor"
     },
     ["<leader>rf"] = {
       function()
         vim.cmd("write!")
-        require("neotest").run.run(vim.fn.expand("%"))
-        require("neotest").summary.open()
+        neotest.run.run(vim.fn.expand("%"))
+        neotest.summary.open()
       end,
       desc = "run tests in (F)ile"
     },
     ["<leader>rs"] = {
       function()
         vim.cmd("write!")
-        require("neotest").run.run(vim.fn.getcwd())
-        require("neotest").summary.open()
+        neotest.run.run(vim.fn.getcwd())
+        neotest.summary.open()
       end,
       desc = "run tests in (S)uite"
     },
     ["<leader>rr"] = {
       function()
         vim.cmd("write!")
-        require("neotest").run.run_last()
+        neotest.run.run_last()
       end,
       desc = "(r)e-run last test"
     },
     ["<leader>re"] = {
       function()
-        require("neotest").summary.toggle()
+        neotest.summary.toggle()
       end,
       desc = "toggle test summary vi(e)w"
+    },
+    ["<leader>ro"] = {
+      function()
+        neotest.output.open({ enter = true, auto_close = true })
+      end,
+      desc = "show test output panel"
     }
   },
   t = {
