@@ -65,7 +65,10 @@ return {
         neotest.output.open({ enter = true, auto_close = true })
       end,
       desc = "show test output panel"
-    }
+    },
+    -- move lines up/down
+    ["<C-Down>"] = { "<cmd>m .+1<CR>==", desc = "Move line down" },
+    ["<C-Up>"] = { "<cmd>m .-2<CR>==", desc = "Move line up" },
   },
   t = {
     -- setting a mapping to false will disable it

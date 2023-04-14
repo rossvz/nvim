@@ -21,16 +21,14 @@ return {
     },
   },
   -- Set colorscheme to use
-  colorscheme = "catppuccin",
+  colorscheme = "tokyonight-night",
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
     virtual_text = true,
     underline = true,
   },
   lsp = {
-    -- customize lsp formatting options
     formatting = {
-      -- control auto formatting on save
       format_on_save = {
         enabled = true,      -- enable or disable format on save globally
         allow_filetypes = {  -- enable format on save for specified filetypes only
@@ -42,13 +40,16 @@ return {
       },
       timeout_ms = 1000, -- default format timeout
     },
-    -- enable servers that you already have installed without mason
     servers = {
       -- "pyright"
     },
   },
   -- Configure require("lazy").setup() options
   lazy = {
+    checker = {
+      enabled = true,
+      notify = false,
+    },
     defaults = { lazy = true },
     performance = {
       rtp = {
@@ -61,9 +62,35 @@ return {
   -- augroups/autocommands and custom filetypes also this just pure lua so
   -- anything that doesn't fit in the normal config locations above can go here
   polish = function()
-    vim.wo.relativenumber = true
-    vim.opt.autowrite = true
-    vim.opt.autowriteall = true
+    local lspconfig = require("lspconfig")
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+    lspconfig.tailwindcss.setup({
+      capabilities = capabilities,
+      filetypes = { "html", "elixir", "eelixir", "heex" },
+      init_options = {
+        userLanguages = {
+          elixir = "html-eex",
+          eelixir = "html-eex",
+          heex = "html-eex",
+        },
+      },
+      settings = {
+        tailwindCSS = {
+          experimental = {
+            classRegex = {
+              'class[:]\\s*"([^"]*)"',
+            },
+          },
+        },
+      },
+    })
+
+    lspconfig.emmet_ls.setup({
+      capabilities = capabilities,
+      filetypes = { "html", "css", "elixir", "eelixir", "heex" },
+    })
+    -- vim.wo.relativenumber = true
     -- Set up custom filetypes
     -- vim.filetype.add {
     --   extension = {
