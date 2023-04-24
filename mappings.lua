@@ -29,7 +29,16 @@ return {
         neotest.run.run()
         neotest.summary.open()
       end,
-      desc = "run tests at (C)ursor"
+      desc = "run tests at cursor"
+    },
+    ["<leader>rC"] = {
+      function()
+        vim.cmd("write!")
+        local path = vim.fn.expand('%')
+        local lnum = vim.fn.line('.')
+        return require('toggleterm').exec(('mix test %s:%d'):format(path, lnum), 1)
+      end,
+      desc = "run tests at cursor in ToggleTerm"
     },
     ["<leader>rf"] = {
       function()
@@ -37,7 +46,7 @@ return {
         neotest.run.run(vim.fn.expand("%"))
         neotest.summary.open()
       end,
-      desc = "run tests in (F)ile"
+      desc = "run tests in file"
     },
     ["<leader>rs"] = {
       function()
@@ -45,20 +54,20 @@ return {
         neotest.run.run(vim.fn.getcwd())
         neotest.summary.open()
       end,
-      desc = "run tests in (S)uite"
+      desc = "run tests in suite"
     },
     ["<leader>rr"] = {
       function()
         vim.cmd("write!")
         neotest.run.run_last()
       end,
-      desc = "(r)e-run last test"
+      desc = "re-run last test"
     },
     ["<leader>re"] = {
       function()
         neotest.summary.toggle()
       end,
-      desc = "toggle test summary vi(e)w"
+      desc = "toggle test summary view"
     },
     ["<leader>ro"] = {
       function()
