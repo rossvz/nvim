@@ -14,7 +14,7 @@ return {
       require("neotest").setup {
         -- your neotest config here
         adapters = {
-          require "neotest-elixir",
+          -- require "neotest-elixir",
         },
       }
     end,

@@ -21,7 +21,7 @@ return {
     },
   },
   -- Set colorscheme to use
-  colorscheme = "catppuccin",
+  colorscheme = "tokyonight",
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
     virtual_text = true,
@@ -37,6 +37,13 @@ return {
     servers = {
       -- "pyright"
     },
+    config = {
+      Lua = {
+        diagnostics = {
+          globals = { 'vim' },
+        },
+      }
+    }
   },
   -- Configure require("lazy").setup() options
   lazy = {
@@ -57,7 +64,7 @@ return {
   -- anything that doesn't fit in the normal config locations above can go here
   polish = function()
     -- local lspconfig = require("lspconfig")
-    -- local capabilities = vim.lsp.protocol.make_client_capabilities()
+    -- local capabilities = vim.lsp.protocol.make_client_capabilitkies()
     --
     -- lspconfig.tailwindcss.setup({
     --   capabilities = capabilities,
@@ -84,5 +91,6 @@ return {
     --   capabilities = capabilities,
     --   filetypes = { "html", "css", "eelixir", "heex" },
     -- })
+    --
   end,
 }

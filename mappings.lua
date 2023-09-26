@@ -78,6 +78,10 @@ return {
     -- move lines up/down
     ["<C-Down>"] = { "<cmd>m .+1<CR>==", desc = "Move line down" },
     ["<C-Up>"] = { "<cmd>m .-2<CR>==", desc = "Move line up" },
+    ["gd"] = { "<cmd>lua vim.lsp.buf.definition()<CR>", desc = "Goto definition" },
+    ["gD"] = { "<cmd>lua vim.lsp.buf.declaration()<CR>", desc = "Goto declaration" },
+    ["gi"] = { "<cmd>lua vim.lsp.buf.implementation()<CR>", desc = "Goto implementation" },
+    ["gr"] = { "<cmd>lua vim.lsp.buf.references()<CR>", desc = "Goto references" },
   },
   t = {
     -- setting a mapping to false will disable it
